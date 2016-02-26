@@ -1,0 +1,205 @@
+{% load staticfiles %}
+
+{% include 'frontend/head.html' %}
+<div id="dashboard">
+	<div class="row-fluid">
+
+		<div class="span6">
+
+			<!-- BEGIN PORTLET-->
+
+			<div class="portlet paddingless">
+
+				<div class="portlet-title line">
+
+					<div class="caption"><i class="icon-bell"></i>我的申请</div>
+
+					<div class="tools">
+
+						<a href="" class="collapse"></a>
+
+					</div>
+
+				</div>
+
+				<div class="portlet-body">
+
+					<!--BEGIN TABS-->
+
+					<div class="tabbable tabbable-custom">
+
+						<ul class="nav nav-tabs">
+
+							<li class="active"><a href="#tab_1_1" data-toggle="tab">处理列表</a></li>
+						</ul>
+
+						<div class="tab-content">
+
+							<div class="tab-pane active" id="tab_1_1">
+
+								<div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible="0">
+
+									<ul class="feeds">
+
+										{% for app in resourceApplications %}
+
+										<li>
+
+										<div class="col1">
+
+											<div class="cont">
+
+												<div class="cont-col1">
+
+													<div class="label label-success">
+
+														<i class="icon-bell"></i>
+
+													</div>
+
+												</div>
+
+												<div class="cont-col2">
+
+													<div class="desc">
+
+														{{ app.loc }}
+														{{ app.date }}
+
+														{% if app.state == 'rejected' %}
+														<span class="label label-important label-mini">
+
+															{{ app.state }}
+
+															<i class="icon-share-alt"></i>
+
+														</span>
+														{% endif %}
+														{% if app.state == 'accepted' %}
+														<span class="label label-success label-mini">
+
+															{{ app.state }}
+
+															<i class="icon-share-alt"></i>
+
+														</span>
+														{% endif %}
+														{% if app.state == 'suspending' %}
+														<span class="label label-warning label-mini">
+
+															{{ app.state }}
+
+															<i class="icon-share-alt"></i>
+
+														</span>
+														{% endif %}
+
+													</div>
+
+												</div>
+
+											</div>
+
+										</div>
+
+										<div class="col2">
+
+											<div class="date">
+
+												Just now
+
+											</div>
+
+										</div>
+
+										</li>
+
+										{% endfor %}
+
+									</ul>
+
+								</div>
+
+							</div>
+
+							
+						</div>
+
+					</div>
+
+					<!--END TABS-->
+
+				</div>
+
+			</div>
+
+			<!-- END PORTLET-->
+
+		</div>
+
+		<div class="span6">
+
+			<!-- BEGIN PORTLET-->
+
+			<div class="portlet">
+
+				<div class="portlet-title line">
+
+					<div class="caption"><i class="icon-calendar"></i>资源情况</div>
+
+					<div class="tools">
+
+						<a href="" class="collapse"></a>
+
+					</div>
+
+				</div>
+
+				<div class="portlet-body" id="chats">
+
+					<div class="scroller" data-height="435px" data-always-visible="1" data-rail-visible1="1">
+
+						<ul class="chats">
+
+							{% for res in resources %}
+							<li class="in">
+
+								<img class="avatar" alt="" src="{% static 'frontend/image/avatar1.jpg' %}" />
+
+								<div class="message">
+
+									<span class="arrow"></span>
+
+									<span class="loc">{{ res.loc }}</span>
+
+									<span class="datetime">{{ res.date }}</span>
+
+									<span class="body">
+										{{ res.desc }}
+									</span>
+
+									<a href="/site/applyResource/{{ res.id }}" type="button " class="btn green mini">申请</a>
+
+								</div>
+
+							</li>
+							{% endfor %}
+
+						
+						</ul>
+
+					</div>
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+{% include 'frontend/foot.html' %}

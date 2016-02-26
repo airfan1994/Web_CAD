@@ -1,0 +1,247 @@
+{% load staticfiles %}
+
+{% include 'frontend/head.html' %}
+<link rel="stylesheet" href="{% static 'frontend/css/table.css' %}"/>
+
+							<div class="clearfix"></div>
+							<div class="portlet paddingless">
+								<div class="portlet-title line">
+									<div class="caption"><i class="icon-bell"></i>比赛概览</div>
+									<div class="tools">
+										<a href="" class="collapse"></a>
+										<a href="#portlet-config" data-toggle="modal" class="config"></a>
+										<a href="" class="reload"></a>
+										<a href="" class="remove"></a>
+									</div>
+								</div>
+
+								<div class="portlet-body">
+									<!--BEGIN TABS-->
+									<div class="tabbable tabbable-custom">
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#tab_1_1" data-toggle="tab">比赛成绩公示</a></li>
+											<li><a href="#tab_1_3" data-toggle="tab">比赛信息查询</a></li>
+										</ul>
+										<div class="tab-content">
+											<div class="tab-pane active" id="tab_1_1">
+												<div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible="0">
+													<ul class="feeds">
+														<li>
+															<table class="table">
+																   <caption>赛事成绩查询</caption>
+																   <thead>
+																      <tr>
+																         <th>姓名</th>
+																         <th>学号</th>
+																         <th>运动类型</th>
+																         <th>赛事名称</th>
+																         <th>比赛项目</th>
+																         <th>名次</th>
+																         <th>达到级别</th>
+																         <th>时间</th>
+																         <th>距离</th>
+																         <th>得分</th>
+																         <th>完赛身份</th>
+																      </tr>
+																   </thead>
+																   <tbody>
+																      <tr>
+																         <td>魏洪浩</td>
+																         <td>2012011370</td>
+																         <td>射击</td>
+																         <td>奥运会</td>
+																         <td>男子50米步枪3X40</td>
+																         <td>团体第一名(团体降档)</td>
+																         <td></td>
+																         <td></td>
+																         <td></td>	
+																         <td></td>	
+																         <td></td>	
+																         <td></td>	
+																         <td> 
+																         	
+																         </td>					
+																      </tr>
+																     
+																   </tbody>
+																</table>
+														</li>
+													</ul>
+												</div>
+											</div>
+								
+											<div class="tab-pane" id="tab_1_3">
+												<div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
+													<ul class="feeds">
+														<li>
+															<div class="row-fluid">
+																<div class="span6">
+																	<div class="col1">
+																		<div class="cont">
+																			<div class="cont-col1">
+																				<div class="label label-success">                        
+																					<i class="icon-bell"></i>
+																				</div>
+																			</div>
+
+																			<div class="cont-col2">
+																				<div class="desc">
+																					比赛名称
+																					<input type="text" class="form-control" placeholder="赛事名称" >
+																				</div>
+																			</div>
+																			
+																		</div>
+																	</div>
+																	<div class="col1">
+																		<div class="cont">
+																		
+																			<div class="cont-col1">
+																				<div class="label label-success">                        
+																					<i class="icon-bell"></i>
+																				</div>
+																			</div>
+
+																			<div class="cont-col2">
+																				<div class="desc">
+																					
+																						
+																							比赛时间
+																						
+																						
+																						<div id="datetimepicker" class="input-append date">
+																						      <input type="text" placeholder="赛事时间" ></input>
+																						      <span class="add-on">
+																						        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+																						      </span>
+																						   </div>
+																						    <script type="text/javascript"
+																						     src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+																						    </script>
+																						    <script type="text/javascript"
+																						     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+																						    </script>
+																						    <script type="text/javascript"
+																						     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+																						    </script>
+																						    <script type="text/javascript">
+																						      $('#datetimepicker').datetimepicker({
+																						        format: 'MM/dd/yyyy hh:mm',
+																						        language: 'en',
+																						        pickDate: true,
+																						        pickTime: true,
+																						        hourStep: 1,
+																						        minuteStep: 15,
+																						        secondStep: 30,
+																						        inputMask: true
+																						      });
+																						    </script>
+																						
+																						
+																						    
+																						
+																					
+																				</div>
+																			</div>
+																			
+																		</div>
+																	</div>
+																	<div class="col1">
+																		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		 																	确认
+																		</button>
+																	</div>
+																</div>
+															
+
+															<div class="span6">
+																<div class="portlet paddingless">
+								<div class="portlet-title line">
+									<div class="caption"><i class="icon-bell"></i>比赛信息列表</div>
+									<div class="tools">
+										<a href="" class="collapse"></a>
+										<a href="#portlet-config" data-toggle="modal" class="config"></a>
+										<a href="" class="reload"></a>
+										<a href="" class="remove"></a>
+									</div>
+								</div>
+								<div class="portlet-body">
+									<!--BEGIN TABS-->
+									<div class="tabbable tabbable-custom">
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#tab_1_1" data-toggle="tab">列表查看</a></li>
+										</ul>
+										<div class="tab-content">
+											<div class="tab-pane active" id="tab_1_1">
+												<div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible="0">
+													<ul class="feeds">
+														<li>
+															<div class="col1">
+																<div class="cont">
+																	<div class="cont-col1">
+																		<div class="label label-success">                        
+																			<i class="icon-bell"></i>
+																		</div>
+																	</div>
+																	<div class="cont-col2">
+																		<div class="desc">
+																			You have 4 pending tasks.
+																			<span class="label label-important label-mini">
+																			Take action 
+																			<i class="icon-share-alt"></i>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col2">
+																<div class="date">
+																	Just now
+																</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+														</li>
+													</ul>
+
+
+
+													
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">赛事信息 </h4>
+      </div>
+      <div class="modal-body">
+         赛事信息
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> 关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+s
+{% include 'frontend/foot.html' %}

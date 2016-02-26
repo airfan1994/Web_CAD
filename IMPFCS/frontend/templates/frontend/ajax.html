@@ -1,0 +1,187 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>  
+<head>  
+<meta charset="utf-8" />  
+<title>ajax test</title> 
+<script src="{% static 'frontend/js/jquery-latest.js' %}"></script>
+<script type="text/javascript">
+var t = 0;                      //标记当前处理到的位置   
+var point = [];
+var m = 1;                      //ps
+var u = 0;                           //标记位数
+var wr = 0;                          //标记开端,有括号才计入数据
+var cr = 0;                         //标记是逗号后面的数据
+var num = [0,0,0,0,0];
+var num1 = [0,0,0,0,0];
+var num2 = [0,0,0,0,0];
+var sum_num = 0;                     //运算中的累加值，横坐标
+var sum_num1 = 0;                    //运算中的累加值，纵坐标
+var sum_num2 = 0;
+//var datas = [];
+var color = ['#000','#004','#008','#00c','#040','#044','#048','#04c','#080','#084','#088','#08c','#0c0','#0c4','#0c8','#0cc','#400','#404','#408','#40c','#440','#444','#448','#44c','#480','#484','#488','#48c','#4c0','#4c4','#4c8','#4cc','#800','#804','#808','#80c','#8c0','#8c4','#8c8','#8cc','#cc0','#cc4','#cc8','#ccc','#840','#844','#848','#84c','#880','#884','#888','#88c','#c00','#c04','#c08','#c0c','#c40','#c44','#c48','#c4c','#c80','#c84','#c88','#c8c'];
+$(document).ready(function(){
+//$("#btn-1").click(function(){
+$.ajax({ type :"get", url :"http://127.0.0.1:8000/site/ccc/",  async :false, success :function(data){
+//alert(data[3]);
+var datas = data;
+var s = data.length;
+while(t<s)
+{
+    if (datas[t]=="(")
+    {wr = 1;}
+    else if (datas[t]=='?')
+    {   n = 0;
+        u = u-1;
+        while (n<=u)
+            {sum_num+=num[n]*(Math.pow(10,u-n));
+            n = n+1;}
+        point.push(sum_num);
+      //  document.write(sum_num);
+      //  document.write(',');   
+        sum_num = 0;
+        u = 0;
+        cr = 1;
+    } 
+    else if (datas[t]=='!')
+    {   n = 0;
+        u = u-1;
+        while (n<=u)
+        {   sum_num1+=num1[n]*(Math.pow(10,u-n));
+            n = n+1;}
+        point.push(sum_num1);
+      //  document.write(sum_num1);
+      //  document.write('@');
+        sum_num1 = 0;
+        u = 0;
+        cr = 2;
+    }
+    else if (datas[t]==')')
+    {   n = 0;
+        u = u-1;
+        while (n<=u)
+        {   sum_num2+=num2[n]*(Math.pow(10,u-n));
+            n = n+1;}
+        point.push(sum_num2);
+      //  document.write(sum_num2);
+      //  document.write('$');
+        sum_num2 = 0;
+        u = 0 ;
+        wr = 0 ;
+        cr = 0;
+    }
+    else if ((datas[t]>='0') && (datas[t]<='9'))
+    {    if (wr==1)
+         {   if (cr == 0)
+             {   num[u] = Number(datas[t]);
+                 u=u+1;}
+             else if(cr ==1)
+             {   num1[u] = Number(datas[t]);
+                 u=u+1;}
+             else if(cr ==2)
+             {   num2[u] = Number(datas[t]);
+                 u=u+1;}
+             else {}
+         }
+    }
+    else {}
+    t=t+1;
+}
+}
+});   
+//});
+$("#btn-2").click(function(){
+alert(point.length);
+});
+//$("#btn-3").click(function(){
+
+var res = 0;
+var count = point.length;
+var ps=1;
+while (res<count)
+{
+var canvas = document.getElementById('canvas'); 
+var ctx = canvas.getContext('2d');  // 获取 2D 渲染上下文^M
+//ctx.clearRect(0,0,300,200)  ;// 清除以（0,0）为左上坐标原点，300*200 矩形区域内所有像素^M
+if((point[res+2]==ps)){
+ctx.fillStyle = color[(ps%64)];   // 设置矩形的填充属性，#00f 代表蓝色^M
+ctx.strokeStyle = color[(ps%64)];}  // 设置矩形的线条颜色，#f00 代表红色^M
+else
+{
+ps=ps+1;
+ctx.fillStyle = color[(ps%64)];   // 设置矩形的填充属性，#00f 代表蓝色^M
+ctx.fillStyle = color[(ps%64)];   // 设置矩形的填充属性，#00f 代表蓝色^M
+}
+ctx.fillRect((point[res]*5),(point[res+1]*6),5,6); // 使用 fillStyle 填充一个 150*80 大小的矩形^M
+ctx.strokeRect((point[res]*5),(point[res+1]*6),5,6);  // 以 strokeStype 属性为边的颜色绘制一个无填充矩形^M
+res = res+3;
+}
+
+//});
+});
+
+function doNothing()
+{
+window.event.returnValue=false;
+return false;}
+
+function init()
+{
+    window.document.onmousedown=mouseDown;
+}
+
+function mouseDown()
+{  
+    var e = window.event || e;
+    var value = e.button;
+    if(value == 2 || value ==3)
+    {   e.preventDefault();}
+    else
+    {
+      if((e.clientX>0)&&(e.clientY>0)&&(e.clientY<600)&&(e.clientX<1250))
+      {
+      var _x=e.clientX-e.target.offsetLeft;
+      var _y=e.clientY+e.target.offsetTop-2;
+      //var _x=e.clientX;				
+      //var _y=e.clientY;
+      var _t=_x%5;
+      var _m=(_x-_t)/5;
+      var xasis = _m;                            //得到x的实际坐标
+      _t = _y%6;
+      _m = (_y-_t)/6;
+      var yasis = _m;                           //得到y的实际坐标
+      var num=0;                                //存储当前点的标号
+      var tol=point.length;
+      var qk=[];                               //存储坐标符合的数组
+      var msg = "It belongs to ";
+      var qt = 0;                                  //标记是否为空
+      while (num<tol)
+      {
+          if(point[num]==xasis)
+          {
+             if(point[num+1]==yasis)
+             {
+                 msg=msg+",ps:"+String(point[num+2]);
+                 qt = 1; 
+             }
+          }
+          num=num+3;
+      }
+      if (qt == 0){msg=msg+" ,no ps";}
+      msg=String(xasis)+','+String(yasis)+msg;
+      $("p").html(msg);
+      }      
+    }
+
+}
+
+</script>  
+<style type="text/css"></style>  
+</head>  
+<body onload="init()" oncontextmenu="doNothing()">  
+<canvas id="canvas" width="1250" height="600">您的浏览器不支持 canvas 标签</canvas>
+<p id="demo">My First point canvas</p> 
+<button id="btn-2" name="2">当前点个数</button>    
+<div id="out"></div>  
+</body>  
+</html> 

@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<html>
+
+
+<head>
+  <title>Login</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Loading Flat UI -->
+  <link rel="stylesheet" href="{% static 'frontend/css/flat-ui.css' %}" />
+  <style>
+    .warning
+    {
+      color: red;
+      font-size: small;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login">
+    <div class="login-screen">
+      <div class="login-icon">
+        <img src="{% static 'frontend/img/login-icon.png' %}" alt="Welcome to Mail App" />
+        <h4>Welcome to <small>IMPFCS</small></h4>
+      </div>
+      <form action="{% url 'frontend:login' %}" method="post">
+      {% csrf_token %}
+        <div class="login-form">
+          <div class="control-group">
+              <input type="text" class="login-field" value="" placeholder="Enter your student ID" id="login-name" name="username" />
+              <label class="login-field-icon fui-man-16" for="login-name"></label>
+          </div>
+
+          <div class="control-group">
+              <input type="password" class="login-field" value="" placeholder="Password" id="login-pass" name="password" />
+              <label class="login-field-icon fui-lock-16" for="login-pass"></label>
+          </div>
+
+          {% if errorMsg %}
+          <p class="warning">{{ errorMsg }}</p>
+          {% endif %}
+
+          <input class="btn btn-primary" type="submit" value="Login" />
+          <a class="login-link" href="/admin/">Administrator?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>

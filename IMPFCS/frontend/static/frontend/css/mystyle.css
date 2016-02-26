@@ -1,0 +1,11 @@
+.header .navbar-inner .container-fluid .brand {
+	margin-left: 0px;
+}
+
+.page-content .container-fluid {
+	padding-top: 20px;
+}
+
+.container-fluid .span6 {
+	margin-left: 0px;
+}

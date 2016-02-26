@@ -1,0 +1,9 @@
+<html>
+{% csrf_token %}
+<form method = 'post'>
+    {{uf.as_p}}
+    {{ps.as_p}}
+    <input type="submit" value = "ok"/>
+
+</form>
+</html>

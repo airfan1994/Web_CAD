@@ -1,0 +1,105 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="utf-8" />
+	<title>清华大学体育信息平台</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+	<link href="{% static 'frontend/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'frontend/css/bootstrap-responsive.min.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'frontend/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'frontend/css/style-metro.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'frontend/css/style.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'frontend/css/style-responsive.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'frontend/css/default.css' %}" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="{% static 'frontend/css/uniform.default.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'frontend/css/mystyle.css' %}" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="{% static 'frontend/image/favicon.ico' %}" />
+</head>
+
+<body class="page-header-fixed">
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="/">清华大学体育信息平台</a>
+
+				<ul class="nav pull-right">
+					<li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img alt="" src="{% static 'frontend/image/avatar1_small.jpg' %}" />
+							<span class="username">{{ user.userinfo.name }}</span>
+							<i class="icon-angle-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							{% if not user.is_superuser %}
+							<li><a href="{% url 'frontend:profile' %}"><i class="icon-list">用户资料</i></a></li>
+							{% endif %}
+							<li><a href="{% url 'frontend:logout' %}"><i class="icon-key"></i>注销</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="page-container">
+		<div class="page-sidebar nav-collapse collapse">
+			<ul class="page-sidebar-menu">
+				<li>
+					<div class="sidebar-toggler hidden-phone"></div>
+				</li>
+				<li>
+					<form class="sidebar-search">
+						<div class="input-box">
+							<!-- TODO search -->
+							<a href="javascript:;" class="remove"></a>
+							<input type="text" placeholder="Search..." />
+							<input type="button" class="submit" value=" " />
+						</div>
+					</form>
+				</li>
+				<li class="start {% ifequal sidebar_select 0 %} active {% endifequal %}">
+					<a href="/">
+						<i class="icon-home"></i>
+						<span class="title">主页</span>
+						{% ifequal sidebar_select  0 %}<span class="selected"></span>{% endifequal %}
+					</a>
+				</li>
+
+				{% if user.userinfo.is_teamMember and not user.is_superuser %}
+				
+				<li class="start {% ifequal sidebar_select 1 %} active {% endifequal %}">
+					<a href="{% url 'frontend:competitions' %}">
+						<i class="icon-home"></i>
+						<span class="title">比赛</span>
+						{% ifequal sidebar_select 1 %}<span class="selected"></span>{% endifequal %}
+					</a>
+				</li>
+				<li class="start {% ifequal sidebar_select 2 %} active {% endifequal %}">
+				<a href="{% url 'frontend:scores' %}">
+						<i class="icon-home"></i>
+						<span class="title">成绩</span>
+						{% ifequal sidebar_select 2 %}<span class="selected"></span>{% endifequal %}
+					</a>
+				</li>
+			
+				{% endif %}
+
+				{% if user.is_superuser %}
+				<li class="start {% ifequal sidebar_select 4 %} active {% endifequal %}">
+					<a href="{% url 'frontend:management' %}">
+						<i class="icon-home"></i>
+						<span class="title">管理</span>
+						{% ifequal sidebar_select 4 %}<span class="selected"></span>{% endifequal %}
+					</a>
+				</li>	
+				{% endif %}
+
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="container-fluid">
+
+

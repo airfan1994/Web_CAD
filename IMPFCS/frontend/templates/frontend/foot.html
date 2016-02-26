@@ -1,0 +1,50 @@
+{% load staticfiles %}
+</div>
+</div>
+</div>
+<div class="footer">
+	<div class="footer-inner">
+		清华大学体育信息平台
+	</div>
+	<div class="footer-tools">
+		<span class="go-top">
+			<i class="icon-angle-up"></i>
+		</span>
+	</div>
+</div>
+
+<script src="{% static 'frontend/js/jquery-1.10.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery-ui-1.10.1.custom.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/excanvas.min.js' %}"></script>
+<script src="{% static 'frontend/js/respond.min.js' %}"></script>
+<script src="{% static 'frontend/js/jquery.slimscroll.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery.blockui.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery.cookie.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery.uniform.min.js' %}" type="text/javascript" ></script>
+
+<script src="{% static 'frontend/js/jquery.flot.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery.flot.resize.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery.pulsate.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/date.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/daterangepicker.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/fullcalendar.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery.easy-pie-chart.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/jquery.sparkline.min.js' %}" type="text/javascript"></script>
+
+<script src="{% static 'frontend/js/app.js' %}" type="text/javascript"></script>
+<script src="{% static 'frontend/js/index.js' %}" type="text/javascript"></script>
+
+<script>
+	jQuery(document).ready(function() {
+		App.init(); // initlayout and core plugins
+		Index.init();
+		Index.initCalendar(); // init index page's custom scripts
+		Index.initCharts(); // init index page's custom scripts
+		Index.initChat();
+		Index.initMiniCharts();
+		Index.initDashboardDaterange();
+		Index.initIntro();
+	});
+</script>

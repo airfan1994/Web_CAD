@@ -1,0 +1,57 @@
+{% load staticfiles %}
+
+<html>
+
+<head>
+  <title>Login</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Loading Flat UI -->
+  <link rel="stylesheet" href="{% static 'frontend/css/flat-ui.css' %}" />
+</head>
+
+<body>
+    <h1>Please complete your information</h1>
+
+    <form action="{% url 'frontend:completeInfo' %}" method="post">
+        {% csrf_token %}   
+        <label for="input-username">学号</label>
+        <input type="text" name="username", value="{{user.username}}" id="input-username" disabled />
+        <br />
+
+        <label for="input-name">姓名</label>
+        <input type="text" name="name" id="input-name" />
+        <br />
+
+        <div class="span3">
+            <label class="demo-panel-title">性别</label>
+            <br />
+            <label class="radio">
+                <input type="radio" name="gender" value="男" checked="checked" id="input-gender" />
+            男
+            </label>
+            <label class="radio">
+                <input type="radio" name="gender" value="女" id="input-gender" />
+            女
+            </label>
+        </div>
+        <br />
+
+        <label for="department">院系</label>
+        <select id="department" name="department">
+            <option value=""> </option>
+            <option value="电子工程系">电子工程系</option>
+            <option value="计算机科学与技术系">计算机科学与技术系</option>
+        </select>
+        <br />
+
+        <label for="studentClass">班级</label>
+        <input class="text" name="studentClass" />
+        <br />
+
+        <input class="btn btn-primary" type="submit", value="submit" />
+    </form>
+
+</body>
+
+</html>

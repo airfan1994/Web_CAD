@@ -1,0 +1,14 @@
+<html>
+<head><title>test page</title></head>
+<body>
+{% if item_list %}
+<ul>
+{% for item in item_list %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>nothing avalible</p>
+{% endif %}
+</body>
+</html>

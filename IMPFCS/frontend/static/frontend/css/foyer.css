@@ -1,0 +1,64 @@
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+body {
+  background: #F2F2F2;
+  margin-top: 80px;
+}
+
+.tile-container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.tiles-left {
+  width: 640px;
+  margin: 0;
+  padding: 0;
+  float:left;
+}
+
+.tiles-right {
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  float:right;
+}
+
+.tile {
+  background: #fff;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.tile-head {
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px #f2f2f2 solid;
+}
+
+.profile-head {
+  padding-top: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-content {
+
+}
+.profile-foot {
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+}
+
+.edit-modal {
+  width: 320px;
+}

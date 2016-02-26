@@ -1,0 +1,151 @@
+.demo {
+    /* for IE10+ touch devices */
+    touch-action:none;
+}
+
+.w {
+    padding-top: 8px;
+	padding-left:2px;
+	padding-right:2px;
+	padding-bottom:4px;
+    position: absolute;
+    z-index: 4;
+    border: 1px solid #2e6f9a;
+    box-shadow: 2px 2px 19px #e0e0e0;
+    -o-box-shadow: 2px 2px 19px #e0e0e0;
+    -webkit-box-shadow: 2px 2px 19px #e0e0e0;
+    -moz-box-shadow: 2px 2px 19px #e0e0e0;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    cursor: move;
+    background-color: white;
+    font-size: 11px;
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+
+.image-per {
+width:50px;
+height:50px;
+border-radius:50px;
+box-shadow: 0px 0px 10px #aaaaaa;
+
+
+}
+.image-router{
+width:70px;
+height:70px;
+
+}
+
+.w:hover {
+    background-color: #5c96bc;
+    color: white;
+
+}
+
+.aLabel {
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+
+.aLabel._jsPlumb_hover, ._jsPlumb_source_hover, ._jsPlumb_target_hover {
+    background-color: #5ca6ff;
+    color: white;
+}
+
+.aLabel {
+    background-color: white;
+    opacity: 0.8;
+    padding: 0.3em;
+    border-radius: 0.5em;
+    border: 1px solid #346789;
+    cursor: pointer;
+}
+
+
+
+
+
+.statemachine-demo ._jsPlumb_endpoint {
+    z-index: 3;
+}
+
+#router1 {
+    left: 30em;
+    top: 1em;
+}
+
+#router2{
+    left: 5em;
+    top: 15em;
+}
+#router3{
+    left: 30em;
+    top: 15em;
+}
+#router4{
+    left: 55em;
+    top: 15em;
+}
+#router5{
+    left: 70em;
+    top: 15em;
+}
+#router6{
+    left: 80em;
+    top: 15em;
+}
+#router7{
+    left: 90em;
+    top: 15em;
+}
+
+#user1 {
+    left: 0em;
+    top: 35em;
+}
+
+#user2 {
+    left: 20em;
+    top: 35em;
+}
+
+#user3 {
+    left: 40em;
+    top: 30em;
+}
+#user4 {
+    left: 60em;
+    top: 35em;
+}
+#user5 {
+    left: 80em;
+    top: 35em;
+}
+#user6 {
+    left: 100em;
+    top: 35em;
+}
+#user7 {
+    left: 120em;
+    top: 35em;
+}
+#user8 {
+    left: 140em;
+    top: 35em;
+}
+#user9 {
+    left: 160em;
+    top: 35em;
+}
+
+.dragHover {
+    border: 2px solid orange;
+}
+
+path, ._jsPlumb_endpoint { cursor:pointer; }

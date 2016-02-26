@@ -1,0 +1,396 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+{% include 'frontend/head.html' %}
+
+<link href="{% static 'frontend/css/datepicker.css' %}" rel="stylesheet" type="text/css"/>
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+			<div class="container-fluid">
+
+				<!-- BEGIN PAGE HEADER-->   
+
+				<div class="row-fluid">
+
+					<div class="span12">
+
+						<h3 class="page-title">
+
+							用户资料
+
+							{% if user.userinfo.is_teamMember %}
+								<small>代表队成员</small>
+							{% else %}
+								<small>普通用户</small>
+							{% endif %}
+							
+
+						</h3>
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE HEADER-->
+
+				<!-- BEGIN PAGE CONTENT-->
+
+				<div class="row-fluid">
+
+					<div class="span12">
+
+						<!-- BEGIN SAMPLE FORM PORTLET-->   
+
+						<div class="portlet box blue tabbable">
+
+							<div class="portlet-title">
+
+								<div class="caption">
+
+									<i class="icon-reorder"></i>
+
+
+								</div>
+
+							</div>
+
+							<div class="portlet-body form">
+
+								<div class="tabbable portlet-tabs">
+
+									<ul class="nav nav-tabs">
+										{% if user.userinfo.is_teamMember %}
+										<li><a href="#portlet_tab2" data-toggle="tab">代表队成员信息</a></li>
+										{% else %}
+										<li><a href="#portlet_tab2" data-toggle="tab">加入代表队</a></li>
+										{% endif %}
+										
+
+										<li class="active"><a href="#portlet_tab1" data-toggle="tab">基本信息</a></li>
+
+									</ul>
+
+									<div class="tab-content">
+
+										<div class="tab-pane active" id="portlet_tab1">
+
+											<!-- BEGIN FORM-->
+
+											<form action="{% url 'frontend:completeInfo' %}" method="post" class="form-horizontal">
+											{% csrf_token %}
+												<div class="control-group">
+
+													<label class="control-label">学号</label>
+
+													<div class="controls">   
+														<input class="m-wrap medium" readonly type="text" placeholder="{{ user.username }}"disabled />
+
+													</div>
+												</div>
+
+												<div class="control-group">
+
+													<label class="control-label">姓名</label>
+
+													<div class="controls">
+														<input type="text" name="name" value="{{ user.userinfo.name }}" class="m-wrap small" />
+													</div>
+												</div>
+												<div class="control-group">
+													<label class="control-label">性别</label>
+													<div class="controls">
+														{% if user.userinfo.gender == '女' %}
+														<label class="radio">
+														<input type="radio" name="gender" value="男" />
+														男
+														</label>
+														<label class="radio">
+														<input type="radio" name="gender" value="女" checked />
+														女
+														</label>  
+
+														{% else %}
+
+														<label class="radio">
+														<input type="radio" name="gender" value="男"
+														checked />
+														男
+														</label>
+														<label class="radio">
+														<input type="radio" name="gender" value="女" />
+														女
+														</label> 
+
+														{% endif %}
+
+													</div>
+												</div>
+									
+												<div class="control-group">
+
+													<label class="control-label">院系</label>
+
+													<div class="controls">
+
+														<select id="department_select" name="department" class="small m-wrap" tabindex="0">
+															<option title="" value=""></option>
+															
+															<option title="机械系" value="机械系">机械系</option>
+															<option title="热能系" value="热能系">热能系</option>		
+															<option title="电机系" value="电机系">电机系</option>
+															<option title="电子系" value="电子系">电子系</option>
+															<option title="计算机系" value="计算机系">计算机系</option>
+															<option title="自动化系" value="自动化系">自动化系
+														</select>
+
+													</div>
+
+												</div>
+
+												<div class="control-group">
+
+													<label class="control-label">班级</label>
+
+													<div class="controls">
+
+														<input type="text" name="studentClass" value="{{ user.userinfo.studentClass }}" class="m-wrap small" />
+
+													</div>
+												</div>
+												<div class="form-actions ">
+
+													<button type="submit" class="btn blue"><i class="icon-ok"></i> 更新资料</button>
+
+												</div>
+
+											</form>
+
+											<!-- END FORM-->  
+
+										</div>
+
+										<div class="tab-pane " id="portlet_tab2">
+
+											<!-- BEGIN FORM-->
+
+											<form action="{% url 'frontend:applyTeam' %}" method="post" class="form-horizontal">
+												{% csrf_token %}
+												<div class="control-group">
+
+													<label class="control-label">队伍类别</label>
+
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.teamCategory }}"disabled />
+
+														{% else %}
+														<select name="teamCategory" class="small m-wrap" tabindex="1">
+															<option value=""></option>
+
+															<option value="A">A</option>
+
+															<option value="B">B</option>
+
+															<option value="C">C</option>
+
+														</select>
+														{% endif %}
+													</div>
+												</div>
+												
+												<div class="control-group">
+													<label class="control-label">队内职务</label>
+
+													<div class="controls">
+													{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.teamRole }}"disabled />
+
+														{% else %}
+														<select name="teamRole" class="small m-wrap" tabindex="1">
+															<option value=""></option>
+
+															<option value="队长">队长</option>
+
+															<option value="团支书">团支书</option>
+
+															<option value="队员">队员</option>
+
+														</select>
+														{% endif %}
+													</div>
+												</div>
+
+												<div class="control-group">
+
+													<label class="control-label">队名</label>
+
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.teamName }}"disabled />
+
+														{% else %}
+														<input type="text" name="teamName" class="m-wrap small" />
+														{% endif %}
+													</div>
+												</div>
+													
+
+												<div class="control-group">
+
+													<label class="control-label">教练名称</label>
+
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.coach }}"disabled />
+
+														{% else %}
+														<input type="text" name="coach" class="m-wrap small" />
+														{% endif %}
+													</div>
+												</div>
+
+
+
+												<div class="control-group">
+
+													<label class="control-label">出生日期</label>
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.birth }}"disabled />
+
+														{% else %}
+														<input class="m-wrap m-ctrl-medium date-picker" type="text" name="birth" data-date-format="yyyy-mm-dd" size="16">
+														{% endif %}
+													</div>
+												</div>
+
+												<div class="control-group">
+
+													<label class="control-label">政治面貌</label>
+
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.politicalBackground }}"disabled />
+
+														{% else %}
+														<select name="politicalBackground" class="small m-wrap" tabindex="1">
+
+															<option value=""></option>
+
+															<option value="群众">群众</option>
+
+															<option value="共青团员">共青团员</option>
+
+															<option value="积极分子">积极分子</option>
+
+															<option value="预备党员">预备党员</option>
+
+															<option value="党员">党员</option>
+
+														</select>
+														{% endif %}
+													</div>
+												</div>
+
+												<div class="control-group">
+
+													<label class="control-label">电话</label>
+
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.phoneNum }}"disabled />
+
+														{% else %}
+														<input type="text" name="phoneNum" value="{{ user.userinfo.studentClass }}" class="m-wrap small" />
+														{% endif %}
+													</div>
+												</div>
+
+												<div class="control-group">
+
+													<label class="control-label">邮箱</label>
+
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.email }}"disabled />
+
+														{% else %}
+														<input type="text" name="email" value="{{ user.userinfo.studentClass }}" class="m-wrap medium" />
+														{% endif %}
+													</div>
+												</div>
+
+
+												<div class="control-group">
+
+													<label class="control-label">住址</label>
+
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.address }}"disabled />
+
+														{% else %}
+														<input type="text" name="address" value="{{ user.userinfo.studentClass }}" class="m-wrap medium" />
+														{% endif %}
+													</div>
+												</div>
+
+												<div class="control-group">
+													<label class="control-label">社会工作</label>
+													<div class="controls">
+														{% if user.userinfo.is_teamMember %}
+														<input class="m-wrap small" readonly type="text" placeholder="{{ user.userinfo.teamCategory }}"disabled />
+
+														{% else %}
+														<textarea class="medium m-wrap" name="work" rows="3"></textarea>
+														{% endif %}
+													</div>
+												</div>
+												{% if not user.userinfo.is_teamMember %}
+												<div class="form-actions ">
+
+													<button type="submit" class="btn blue"><i class="icon-ok"></i> 提交申请</button>
+
+												</div>
+												{% endif %}
+
+											</form>
+
+											<!-- END FORM-->  
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<!-- END SAMPLE FORM PORTLET-->
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE CONTENT-->         
+
+			</div>
+
+			<!-- END PAGE CONTAINER-->
+
+
+{% include 'frontend/foot.html' %}
+<script type="text/javascript" src="{% static 'frontend/js/bootstrap-datepicker.js' %}"></script>
+<script type="text/javascript">
+$("#department_select option[value='{{ user.userinfo.department }}']").attr("selected", true);
+$(function() {
+	$('.date-picker').datepicker();
+	requestListApplies();
+});
+</script>
+
+</html>
